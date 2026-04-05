@@ -72,6 +72,81 @@ public:
     }
 };
 
+//khach hang
+class Khach_hang {
+private:
+    string ma_khach;
+    string ten_khach;
+    string so_dt;
+
+public:
+    Khach_hang() {
+        ma_khach = "";
+        ten_khach = "";
+        so_dt = "";
+    }
+
+    string get_ma() {return ma_khach;}
+    string get_ten() {return ten_khach;}
+
+    void nhap_kh() {
+        cout<<"ma KH: ";
+        cin>>ma_khach;
+        cin.ignore();
+        cout<<"ten: ";
+        getline(cin, ten_khach);
+        cout<<"sdt: ";
+        cin>>so_dt;
+    }
+
+    void xuat_kh() {
+        cout<<ma_khach<<" | "<<ten_khach<<" | "<<so_dt<<endl;
+    }
+};
+
+//hoa don dat phong
+class Hoa_don {
+private:
+    string ma_hd;
+    Khach_hang khach;
+    Phong* phong_dat;
+    int so_ngay;
+
+public:
+    Hoa_don() {
+        ma_hd = "";
+        phong_dat = NULL;
+        so_ngay = 0;
+    }
+
+    void set_ma(string ma) {ma_hd = ma;}
+    void set_khach(Khach_hang k) {khach = k;}
+    void set_phong(Phong* p) {phong_dat = p;}
+    void set_ngay(int n) {so_ngay = n;}
+    string get_ma() {return ma_hd;}
+
+    double tinh_tien() {
+        if(phong_dat != NULL)
+            return phong_dat->tinh_gia() * so_ngay;
+        return 0;
+    }
+
+    friend double tinh_giam(Hoa_don& hd, double gg) {
+        double tien = hd.tinh_tien();
+        return tien - tien * (gg / 100);
+    }
+
+    void xuat_hd() {
+        cout<<"ma HD: "<<ma_hd<<endl;
+        cout<<"khach: "; khach.xuat_kh();
+        cout<<"phong: ";
+        if(phong_dat != NULL) cout<<phong_dat->getma();
+        cout<<endl;
+        cout<<"so ngay: "<<so_ngay<<endl;
+        cout<<"tong tien: "<<tinh_tien()<<endl;
+    }
+};
+
 int main() {
     return 0;
 }
