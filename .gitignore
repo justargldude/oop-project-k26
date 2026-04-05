@@ -1,0 +1,14 @@
+*.exe
+*.out
+*.app
+*.bin
+*.o
+*.obj
+.vscode/
+.vs/
+*.user
+*.suo
+*.db
+tempCodeRunnerFile.cpp
+Thumbs.db
+.DS_Store
