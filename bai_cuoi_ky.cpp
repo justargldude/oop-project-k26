@@ -8,6 +8,7 @@ protected:
     string ten_p;
     double gia;
     int tt;
+    static int sl_phong;
 
 public:
     Phong() {
@@ -15,13 +16,24 @@ public:
         ten_p="";
         gia=0;
         tt=0;
+        sl_phong++;
     }
-    ~Phong() {}
+    virtual ~Phong() {
+        sl_phong--;
+    }
+    static int get_sl() {return sl_phong;}
     string getma() {return ma_p;}
     string getten() {return ten_p;}
     int gettt() {return tt;}
     void settt(int x) {tt=x;}
     virtual double tinh_gia() = 0;
+    bool operator==(Phong& p) {
+        return ma_p==p.ma_p;
+    }
+    friend ostream& operator<<(ostream& os, Phong& p) {
+        p.xuat();
+        return os;
+    }
     virtual void nhap() {
         cout<<"ma phong: "; cin>>ma_p;
         cin.ignore();
@@ -34,6 +46,7 @@ public:
             <<" | "<<(tt==0 ? "Trong" : "Co khach")<<endl;
     }
 };
+int Phong::sl_phong = 0;
 
 class Phong_thuong : public Phong {
 public:
