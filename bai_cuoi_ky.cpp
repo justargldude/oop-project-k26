@@ -187,9 +187,9 @@ int main()
         }
         case 2:
         {
-            if(sohd == 0) { cout << "chua co phong nao het\n"; break; }
+            if(sophong == 0) { cout << "chua co phong nao het\n"; break; }
             cout << "danh sach phong hien tai:\n";
-            for(int i = 0; i < sohd; i++)
+            for(int i = 0; i < sophong; i++)
             {
                 cout << i+1 << ". ";
                 cout << *dsphong[i];
@@ -203,8 +203,79 @@ int main()
             cout << "da them khach hang moi\n";
             break;
         }
+        case 4:
+        {
+            if(sophong == 0 || sokh == 0) { cout << "chua co phong hoac chua co khach\n"; break; }
+            cout << "cac phong dang trong:\n";
+            for(int i = 0; i < sophong; i++)
+            {
+                if(dsphong[i]->gettt() == 0)
+                {
+                    cout << i << ". ";
+                    cout << *dsphong[i];
+                }
+            }
+            int ichon, ikhach, nn;
+            cout << "chon so thu tu phong:"; cin >> ichon;
+            cout << "danh sach khach hang:\n";
+            for(int i = 0; i < sokh; i++)
+            {
+                cout << i << ". ";
+                dskh[i].xuat_kh();
+            }
+            cout << "chon so thu tu khach:"; cin >> ikhach;
+            cout << "so ngay o:"; cin >> nn;
+
+            string mahd;
+            fflush(stdin);
+            cout << "nhap ma hoa don:"; cin >> mahd;
+            dshd[sohd].set_ma(mahd);
+            dshd[sohd].set_khach(dskh[ikhach]);
+            dshd[sohd].set_phong(dsphong[ichon]);
+            dshd[sohd].set_ngay(nn);
+            dsphong[ichon]->settt(1);
+
+            double tien = dshd[sohd].tinh_tien();
+            cout << "dat phong thanh cong tong tien la:" << tien << endl;
+            double gg;
+            cout << "giam gia % nhap 0 neu khong:"; cin >> gg;
+            if(gg > 0)
+            {
+                cout << "tien sau khi giam gia con lai:" << tinh_giam(dshd[sohd], gg) << endl;
+            }
+            sohd++;
+            break;
+        }
+        case 5:
+        {
+            if(sohd == 0) { cout << "chua co hoa don nao\n"; break; }
+            cout << "tat ca hoa don:\n";
+            for(int i = 0; i < sohd; i++)
+            {
+                cout << "hoa don thu " << i+1 << ":\n";
+                dshd[i].xuat_hd();
+            }
+            break;
+        }
+        case 6:
+        {
+            string matim;
+            cout << "nhap ma phong muon tim:"; cin >> matim;
+            bool found = false;
+            for(int i = 0; i < sophong; i++)
+            {
+                if(dsphong[i]->getma() == matim)
+                {
+                    cout << *dsphong[i];
+                    found = true; break;
+                }
+            }
+            if(!found) cout << "khong tim thay phong nay\n";
+            break;
+        }
         default: cout << "khong co lua chon nay\n";
         }
+
     }
     for(int i = 0; i < sophong; i++) delete dsphong[i];
     return 0;
