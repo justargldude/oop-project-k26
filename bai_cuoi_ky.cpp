@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdio>
 using namespace std;
 
 class Phong {
@@ -147,6 +148,64 @@ public:
     }
 };
 
-int main() {
+int main()
+{
+    Phong* dsphong[50];
+    int sophong = 0;
+    Khach_hang dskh[50];
+    int sokh = 0;
+    Hoa_don dshd[50];
+    int sohd = 0;
+    int chon;
+
+    while(true)
+    {
+        printf("\nQuan Ly Khac San\n");
+        printf("1.them phong\n");
+        printf("2.danh sach phong\n");
+        printf("3.them khach hang\n");
+        printf("4.dat phong\n");
+        printf("5.xem hoa don\n");
+        printf("6.tim phong\n");
+        printf("0.thoat\n");
+        printf("chon: ");
+        cin >> chon;
+        if(chon == 0) { printf("thoat chuong trinh\n"); break; }
+
+        switch(chon)
+        {
+        case 1:
+        {
+            int loai;
+            cout << "1:thuong 2:vip: "; cin >> loai;
+            if(loai == 1) dsphong[sophong] = new Phong_thuong();
+            else dsphong[sophong] = new Phong_vip();
+            dsphong[sophong]->nhap();
+            sophong++;
+            cout << "them phong thanh cong roi dang co " << Phong::get_sl() << " phong\n";
+            break;
+        }
+        case 2:
+        {
+            if(sohd == 0) { cout << "chua co phong nao het\n"; break; }
+            cout << "danh sach phong hien tai:\n";
+            for(int i = 0; i < sohd; i++)
+            {
+                cout << i+1 << ". ";
+                cout << *dsphong[i];
+            }
+            break;
+        }
+        case 3:
+        {
+            dskh[sokh].nhap_kh();
+            sokh++;
+            cout << "da them khach hang moi\n";
+            break;
+        }
+        default: cout << "khong co lua chon nay\n";
+        }
+    }
+    for(int i = 0; i < sophong; i++) delete dsphong[i];
     return 0;
 }
