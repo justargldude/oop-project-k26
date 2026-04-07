@@ -19,6 +19,7 @@ public:
         tt=0;
         sl_phong++;
     }
+    //virtual de khi delete con tro lop cha goi dung destructor lop con
     virtual ~Phong() {
         sl_phong--;
     }
@@ -217,6 +218,13 @@ int main()
             }
             int ichon, ikhach, nn;
             cout << "chon so thu tu phong:"; cin >> ichon;
+
+            if(dsphong[ichon]->gettt() == 1)
+            {
+                cout << "phong nay dang co khach roi\n";
+                break;
+            }
+
             cout << "danh sach khach hang:\n";
             for(int i = 0; i < sokh; i++)
             {
@@ -275,7 +283,6 @@ int main()
         }
         default: cout << "khong co lua chon nay\n";
         }
-
     }
     for(int i = 0; i < sophong; i++) delete dsphong[i];
     return 0;
