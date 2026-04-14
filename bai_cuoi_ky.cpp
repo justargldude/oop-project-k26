@@ -161,7 +161,7 @@ int main()
 
     while(true)
     {
-        printf("\nQuan Ly Khac San\n");
+        printf("\nQuan Ly Khach San\n");
         printf("1.them phong\n");
         printf("2.danh sach phong\n");
         printf("3.them khach hang\n");
